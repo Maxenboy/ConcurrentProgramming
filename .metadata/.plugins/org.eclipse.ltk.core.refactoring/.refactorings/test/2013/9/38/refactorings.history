@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;alarmclock/src/test&apos;&#x0D;&#x0A;- Original project: &apos;test&apos;&#x0D;&#x0A;- Destination element: &apos;alarmclock/src/test&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     todo.Ticker.java&#x0D;&#x0A;     todo.Monitor.java&#x0D;&#x0A;     todo.Buttonhandler.java&#x0D;&#x0A;     todo.Alarmclock.java" description="Copy compilation units" destination="=alarmclock/src&lt;test" element1="/src&lt;todo{Ticker.java" element2="/src&lt;todo{Monitor.java" element3="/src&lt;todo{Buttonhandler.java" element4="/src&lt;todo{Alarmclock.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1379326171419" units="4" version="1.0"/>
+</session>

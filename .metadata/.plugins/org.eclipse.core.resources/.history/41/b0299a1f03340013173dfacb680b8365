@@ -1,0 +1,51 @@
+package todo;
+
+import se.lth.cs.realtime.*;
+import done.*;
+
+public class WashingController implements ButtonListener {	
+	AbstractWashingMachine theMachine;
+	double theSpeed;
+	RTThread thread;
+	WaterController waterController;
+	TemperatureController tempController;
+	SpinController spinController;
+	
+    public WashingController(AbstractWashingMachine theMachine, double theSpeed) {
+    	this.theMachine=theMachine;
+    	this.theSpeed=theSpeed;
+    	waterController=new WaterController(theMachine, theSpeed);
+    	tempController=new TemperatureController(theMachine, theSpeed);
+    	spinController=new SpinController(theMachine, theSpeed);
+    	thread=new WashingProgram3(theMachine, theSpeed, tempController, waterController, spinController);
+    	{
+			
+			@Override
+			protected void wash() throws InterruptedException {
+				// TODO Auto-generated method stub
+				
+			}
+		}; {
+			
+			@Override
+			protected void wash() throws InterruptedException {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+			
+			@Override
+			protected void wash() throws InterruptedException {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+    	
+    }
+
+    public void processButton(int theButton) {
+    	switch(theButton){
+    	case 0: 
+    	}
+    }
+}

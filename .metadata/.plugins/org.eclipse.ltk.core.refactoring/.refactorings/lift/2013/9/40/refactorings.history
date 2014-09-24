@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;LiftView.java&apos; to &apos;test/src/(default package)&apos;&#x0D;&#x0A;- Original project: &apos;lift&apos;&#x0D;&#x0A;- Destination element: &apos;test/src/(default package)&apos;&#x0D;&#x0A;- Original element: &apos;lift.LiftView.java&apos;" description="Copy compilation unit" destination="=test/src&lt;" element1="/src&lt;lift{LiftView.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1380483775045" units="1" version="1.0"/>
+</session>

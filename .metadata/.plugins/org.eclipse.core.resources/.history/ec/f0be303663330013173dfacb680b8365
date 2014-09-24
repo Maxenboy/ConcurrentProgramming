@@ -1,0 +1,11 @@
+package todo;
+
+public class WashingProgram0 extends WashingProgram {
+
+	@Override
+	protected void wash() throws InterruptedException {
+		// TODO Auto-generated method stub
+
+	}
+
+}

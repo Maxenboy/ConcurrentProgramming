@@ -1,0 +1,85 @@
+package server;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Server2 {
+	
+//	public static void main(String[] args) {
+//
+//		int port1 = 8081;
+//		int port2 = 8082;
+//		String host = "argus-1";
+//		int port = 7878;
+//
+//
+//		if (args.length == 4) {
+//			port1 = Integer.parseInt(args[0]);
+//			port2 = Integer.parseInt(args[1]);
+//			host = args[2];
+//			port = Integer.parseInt(args[3]);
+//		}
+//
+//		Server2 server = new Server2(port1, port2, host, port);
+//
+//	}
+
+	/**
+	 * Create a new server.
+	 * 
+	 * @param port1 HTTPServer port
+	 * @param port2 Socket server port
+	 * @param host  CameraProxy host
+	 * @param port  CameraProxy port
+	 */
+	public Server2(int port1, int port2, String host, int port) {
+		// Setup the monitor and all threads.
+		ServerMonitor monitor = new ServerMonitor();
+
+		// Image grabing thread.
+		ImageThread image = new ImageThread(monitor, host, port);
+		image.start();
+
+		// HTTP server thread.
+		HTTPServerThread HTTPServer = new HTTPServerThread(monitor, port1);
+		HTTPServer.start();
+
+		// Input listener thread (commands from client).
+		InputThread inputThread = new InputThread(monitor);
+		inputThread.start();
+
+		// Output Thread (sends images to client).
+		OutputThread outputThread = new OutputThread(monitor);
+		outputThread.start();
+
+		// Setup a socket server.
+		ServerSocket serverSocket = null;
+		try {
+			serverSocket = new ServerSocket(port2);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		Socket socket = null;
+
+		// Wait for connections.
+		while (true) {
+			try {
+				// Wait for the current socket to disconnect.
+				monitor.awaitDisconnect();
+
+
+				System.out.println("Waiting for socket connection");
+
+				socket = serverSocket.accept();
+				monitor.setSocket(socket);
+
+				System.out.println("Connection received from: " + socket.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+}

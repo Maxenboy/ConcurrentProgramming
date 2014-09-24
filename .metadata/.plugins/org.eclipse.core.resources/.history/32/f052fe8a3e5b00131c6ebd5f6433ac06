@@ -1,0 +1,42 @@
+import javax.swing.JOptionPane;
+
+import client.Client;
+import server.Server;
+import server.Server2;
+
+
+public class Start {
+
+	public static void main(String[] args){
+		// Start the 2 servers.
+		int port1 = startServer(1, 8081, 8082, "argus-", 7888);
+		int port2 = startServer(2, 8091, 8092, "argus-", 7888);
+
+		// Run the client, and connect to the specified socket ports.
+		Client client = new Client(port1, port2);
+	}
+
+	/**
+	 * Create a new server in a new thread.
+	 *
+	 * @param n   Camera number
+	 * @param p1  Default value for HTTPServer port
+	 * @param p2  Default value for Socket Server port
+	 * @param c1  Default value for camera hostname
+	 * @param p3  Default value for CameraProxy port
+	 * @return    Port for socket server
+	 */
+	public static int startServer(int n, int p1, int p2, String c1, int p3) {
+		final int port1 = Integer.parseInt(JOptionPane.showInputDialog("Ange HTTPServer port för kamera "+n, p1));
+		final int port2 = Integer.parseInt(JOptionPane.showInputDialog("Ange Socket server port för kamera "+n, p2));
+		final String cam1 = JOptionPane.showInputDialog("Ange namnet (hostname) för kamera "+n, c1);
+		final int port3 = Integer.parseInt(JOptionPane.showInputDialog("Ange CameraProxy port för kamera "+n, p3));
+		(new Thread() {
+			public void run() {
+				Server server = new Server(port1, port2, cam1, port3);
+			}
+		}).start();
+
+		return port2;
+	}
+}

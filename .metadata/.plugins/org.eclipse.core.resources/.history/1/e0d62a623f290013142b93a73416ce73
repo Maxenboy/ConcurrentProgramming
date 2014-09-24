@@ -1,0 +1,18 @@
+package lift;
+
+public class Main {
+    public static void main(String[] args) {
+        int personCount = 20;
+
+        LiftView liftView = new LiftView();
+        Monitor monitor = new Monitor(liftView);
+
+        Person[] persons = new Person[personCount];
+        for (int i = 0; i < personCount; i++) {
+            persons[i] = new Person(monitor);
+            persons[i].start();
+        }
+
+        new Lift(monitor, liftView).start();
+    }
+}
